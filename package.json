@@ -1,3 +1,47 @@
 {
-  "main": "./src/line-iterator.mjs"
+  "name": "reader-line-iterator",
+  "version": "0.0.0-semantic-release",
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "main": "./src/line-iterator.mjs",
+  "exports": {
+    ".": "./src/line-iterator.mjs"
+  },
+  "description": "Convert a reader into a async iterator emitting text lines",
+  "contributors": [
+    {
+      "name": "Markus Felten",
+      "email": "markus.felten@gmx.de"
+    }
+  ],
+  "license": "BSD-2-Clause",
+  "scripts": {
+    "cover": "c8 -x 'tests/**/*' --temp-directory build/tmp ava --timeout 2m && c8 report -r lcov -o build/coverage --temp-directory build/tmp",
+    "test": "ava --timeout 2m",
+    "docs": "documentation readme ./src/line-iterator.mjs --section=API",
+    "lint": "documentation lint ./src/line-iterator.mjs"
+  },
+  "devDependencies": {
+    "c8": "^7.3.0",
+    "ava": "^3.11.1",
+    "documentation": "^13.0.2",
+    "semantic-release": "^17.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arlac77/reader-line-iterator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/arlac77/reader-line-iterator/issues"
+  },
+  "homepage": "https://github.com/arlac77/reader-line-iterator#readme",
+  "template": {
+    "inheritFrom": [
+      "arlac77/template-arlac77-github",
+      "arlac77/template-esm-only"
+    ]
+  }
 }
