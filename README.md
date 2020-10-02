@@ -9,3 +9,31 @@
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![Known Vulnerabilities](https://snyk.io/test/github/arlac77/reader-line-iterator/badge.svg)](https://snyk.io/test/github/arlac77/reader-line-iterator)
 [![Coverage Status](https://coveralls.io/repos/arlac77/reader-line-iterator/badge.svg)](https://coveralls.io/r/arlac77/reader-line-iterator)
+
+# reader-line-iterator
+
+Convert a reader into a async iterator emitting text lines
+
+```js
+import { lineIterator } from "reader-line-iterator";
+
+const result = await fetch("http://somewhere/mytext.txt");
+
+for await (const line of lineIterator(result.reader)) {
+    console.log(line);
+}
+```
+
+# API
+
+# install
+
+With [npm](http://npmjs.org) do:
+
+```shell
+npm install reader-line-iterator
+```
+
+# license
+
+BSD-2-Clause
