@@ -2,27 +2,35 @@ import test from "ava";
 import { lineIterator } from "reader-line-iterator";
 
 class Reader {
-  constructor(chunks)
-  {
-     this.chunks = chunks;
+  constructor(chunks) {
+    this.te = new TextEncoder();
+    this.chunks = chunks;
+    this.index = 0;
   }
 
-  async * read()
-  {
-     for(const chunk of this.chunks) {
-       yield { value: chunk, done: false};
-     }
-     yield { value: undefined, done: true };
+  async read() {
+    return this.index < this.chunks.length
+      ? {
+          done: false,
+          value: this.te.encode(this.chunks[this.index++])
+        }
+      : { value: undefined, done: true };
   }
 }
 
-test("1st.", async t => {
-  const reader = new Reader([""]);
-  const lines = [];
+async function rt(t, chunks, lines) {
+  const reader = new Reader(chunks);
+  const got = [];
 
   for await (const line of lineIterator(reader)) {
-    lines.push(line);
+    got.push(line);
   }
+  t.deepEqual(got, lines);
+}
 
-  t.deepEqual(lines,[]);
-}); 
+rt.title = (providedTitle = "", chunks, lines) =>
+  `equal ${providedTitle} ${chunks} ${lines}`.trim();
+
+test(rt, [], []);
+test(rt, ["line 1"], ["line 1"]);
+test(rt, ["li", "ne 1\nline", " ", "2"], ["line 1", "line 2"]);

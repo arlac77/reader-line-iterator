@@ -1,14 +1,15 @@
-
 /**
- * Produces lines from a reader
+ * Extracts lines from a reader
  * @param {Reader} reader
  * @return {AsyncIterator<string>} lines
  */
 export async function* lineIterator(reader) {
   let { value, done } = await reader.read();
 
-  if(done) { return; }
- 
+  if (done) {
+    return;
+  }
+
   const decoder = new TextDecoder();
 
   value = value ? decoder.decode(value) : "";
@@ -25,10 +26,9 @@ export async function* lineIterator(reader) {
       const remainder = value.substr(startIndex);
       ({ value, done } = await reader.read());
 
-      if(value) {
+      if (value) {
         value = remainder + decoder.decode(value);
-      }
-      else {
+      } else {
         value = remainder;
       }
       startIndex = re.lastIndex = 0;
@@ -41,4 +41,3 @@ export async function* lineIterator(reader) {
     yield value.substr(startIndex);
   }
 }
-
