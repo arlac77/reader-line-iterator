@@ -1,5 +1,5 @@
 /**
- * Extracts lines from a reader
+ * Extracts lines from a reader and delivers them as an async iterator
  * @param {Reader} reader
  * @return {AsyncIterator<string>} lines
  */
