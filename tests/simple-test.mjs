@@ -34,3 +34,4 @@ rt.title = (providedTitle = "", chunks, lines) =>
 test(rt, [], []);
 test(rt, ["line 1"], ["line 1"]);
 test(rt, ["li", "ne 1\nline", " ", "2"], ["line 1", "line 2"]);
+test(rt, ["line 1\n\nline 2"], ["line 1", "", "line 2"]);
