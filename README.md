@@ -3,7 +3,7 @@
 [![minified size](https://badgen.net/bundlephobia/min/reader-line-iterator)](https://bundlephobia.com/result?p=reader-line-iterator)
 [![downloads](http://img.shields.io/npm/dm/reader-line-iterator.svg?style=flat-square)](https://npmjs.org/package/reader-line-iterator)
 [![GitHub Issues](https://img.shields.io/github/issues/arlac77/reader-line-iterator.svg?style=flat-square)](https://github.com/arlac77/reader-line-iterator/issues)
-[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Farlac77%2Freader-line-iterator%2Fbadge&style=flat)](https://actions-badge.atrox.dev/arlac77/reader-line-iterator/goto)
+[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Farlac77%2Freader-line-iterator%2Fbadge\&style=flat)](https://actions-badge.atrox.dev/arlac77/reader-line-iterator/goto)
 [![Styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![Known Vulnerabilities](https://snyk.io/test/github/arlac77/reader-line-iterator/badge.svg)](https://snyk.io/test/github/arlac77/reader-line-iterator)
@@ -29,8 +29,8 @@ for await (const line of lineIterator(result.reader)) {
 
 ### Table of Contents
 
--   [lineIterator](#lineiterator)
-    -   [Parameters](#parameters)
+*   [lineIterator](#lineiterator)
+    *   [Parameters](#parameters)
 
 ## lineIterator
 
@@ -38,9 +38,9 @@ Extracts lines from a reader and delivers them as an async iterator
 
 ### Parameters
 
--   `reader` **Reader** 
+*   `reader` **Reader** 
 
-Returns **AsyncIterator&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** lines
+Returns **AsyncIterator<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** lines
 
 # install
 
