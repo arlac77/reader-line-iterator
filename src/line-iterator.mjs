@@ -1,16 +1,15 @@
 /**
- * Extracts lines from a reader and delivers them as an async iterator
+ * Extracts lines from a reader and delivers them as an async iterator.
  * @param {Reader} reader
+ * @param {TextDecoder} decoder
  * @return {AsyncIterator<string>} lines
  */
-export async function* lineIterator(reader) {
+export async function* lineIterator(reader, decoder = new TextDecoder()) {
   let { value, done } = await reader.read();
 
   if (done) {
     return;
   }
-
-  const decoder = new TextDecoder();
 
   value = value ? decoder.decode(value) : "";
 
@@ -26,11 +25,7 @@ export async function* lineIterator(reader) {
       const remainder = value.substr(startIndex);
       ({ value, done } = await reader.read());
 
-      if (value) {
-        value = remainder + decoder.decode(value);
-      } else {
-        value = remainder;
-      }
+      value = value ? remainder + decoder.decode(value) : remainder;
       startIndex = re.lastIndex = 0;
       continue;
     }
