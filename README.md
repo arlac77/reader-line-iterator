@@ -34,11 +34,12 @@ for await (const line of lineIterator(result.reader)) {
 
 ## lineIterator
 
-Extracts lines from a reader and delivers them as an async iterator
+Extracts lines from a reader and delivers them as an async iterator.
 
 ### Parameters
 
 *   `reader` **Reader** 
+*   `decoder` **[TextDecoder](https://developer.mozilla.org/docs/Web/API/TextDecoder)**  (optional, default `new TextDecoder()`)
 
 Returns **AsyncIterator<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** lines
 
