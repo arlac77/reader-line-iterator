@@ -5,31 +5,31 @@
  * @return {AsyncIterator<string>} extracted lines
  */
 export async function* lineIterator(reader, decoder = new TextDecoder()) {
-  let { value, done } = await reader.read();
+  let r = await reader.read();
 
-  value = value ? decoder.decode(value) : "";
+  let chunk = r.value ? decoder.decode(r.value) : "";
 
   const re = /\n|\r\n/gm;
   let startIndex = 0;
 
   for (;;) {
-    const result = re.exec(value);
+    const result = re.exec(chunk);
     if (result) {
-      yield value.substring(startIndex, result.index);
+      yield chunk.substring(startIndex, result.index);
       startIndex = re.lastIndex;
     }
     else {
-      if (done) {
+      if (r.done) {
         break;
       }
-      const remaining = value.substr(startIndex);
-      ({ value, done } = await reader.read());
+      const remaining = chunk.substring(startIndex);
+      r = await reader.read();
 
-      value = value ? remaining + decoder.decode(value) : remaining;
+      chunk = r.value ? remaining + decoder.decode(r.value) : remaining;
       startIndex = re.lastIndex = 0;
     }
   }
-  if (startIndex < value.length) {
-    yield value.substr(startIndex);
+  if (startIndex < chunk.length) {
+    yield chunk.substr(startIndex);
   }
 }
