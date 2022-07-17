@@ -23,7 +23,7 @@ export async function* lineIterator(reader, decoder = new TextDecoder()) {
         break;
       }
       const remaining = value.substr(startIndex);
-      { value, done } = await reader.read();
+      ({ value, done } = await reader.read());
 
       value = value ? remaining + decoder.decode(value) : remaining;
       startIndex = re.lastIndex = 0;
