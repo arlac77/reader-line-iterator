@@ -2,14 +2,10 @@
  * Extracts lines from a reader and delivers them as an async iterator.
  * @param {Reader} reader
  * @param {TextDecoder} decoder
- * @return {AsyncIterator<string>} lines
+ * @return {AsyncIterator<string>} extracted lines
  */
 export async function* lineIterator(reader, decoder = new TextDecoder()) {
   let { value, done } = await reader.read();
-
-  if (done) {
-    return;
-  }
 
   value = value ? decoder.decode(value) : "";
 
@@ -18,19 +14,20 @@ export async function* lineIterator(reader, decoder = new TextDecoder()) {
 
   for (;;) {
     const result = re.exec(value);
-    if (!result) {
+    if (result) {
+      yield value.substring(startIndex, result.index);
+      startIndex = re.lastIndex;
+    }
+    else {
       if (done) {
         break;
       }
-      const remainder = value.substr(startIndex);
-      ({ value, done } = await reader.read());
+      const remaining = value.substr(startIndex);
+      { value, done } = await reader.read();
 
-      value = value ? remainder + decoder.decode(value) : remainder;
+      value = value ? remaining + decoder.decode(value) : remaining;
       startIndex = re.lastIndex = 0;
-      continue;
     }
-    yield value.substring(startIndex, result.index);
-    startIndex = re.lastIndex;
   }
   if (startIndex < value.length) {
     yield value.substr(startIndex);
