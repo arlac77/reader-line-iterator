@@ -30,6 +30,6 @@ export async function* lineIterator(reader, decoder = new TextDecoder()) {
     }
   }
   if (startIndex < chunk.length) {
-    yield chunk.substr(startIndex);
+    yield chunk.substring(startIndex);
   }
 }
