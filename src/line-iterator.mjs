@@ -9,7 +9,7 @@ export async function* lineIterator(reader, decoder = new TextDecoder()) {
 
   let chunk = r.value ? decoder.decode(r.value) : "";
 
-  const re = /\n|\r\n/gm;
+  const re = /\r?\n/gm;
   let startIndex = 0;
 
   for (;;) {
