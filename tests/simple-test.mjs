@@ -1,28 +1,23 @@
 import test from "ava";
+import { ReadableStream } from "node:stream/web";
 import { lineIterator } from "reader-line-iterator";
 
-class Reader {
-  constructor(chunks) {
-    this.te = new TextEncoder();
-    this.chunks = chunks;
-    this.index = 0;
-  }
-
-  async read() {
-    return this.index < this.chunks.length
-      ? {
-          done: false,
-          value: this.te.encode(this.chunks[this.index++])
-        }
-      : { value: undefined, done: true };
-  }
-}
-
 async function rt(t, te, chunks, lines) {
-  const reader = new Reader(chunks);
+  const encoder = new TextEncoder();
+
+  const stream = new ReadableStream({
+    async start(controller) {
+      for (const chunk of chunks) {
+        controller.enqueue(encoder.encode(chunk));
+      }
+
+      controller.close();
+    }
+  });
+
   const got = [];
 
-  for await (const line of lineIterator(reader, te)) {
+  for await (const line of lineIterator(stream.getReader(), te)) {
     got.push(line);
   }
   t.deepEqual(got, lines);
@@ -35,4 +30,9 @@ test(rt, undefined, [], []);
 test(rt, undefined, ["line 1"], ["line 1"]);
 test(rt, undefined, ["li", "ne 1\nline", " ", "2"], ["line 1", "line 2"]);
 test(rt, undefined, ["line 1\n\nline 2"], ["line 1", "", "line 2"]);
-test(rt, new TextDecoder("iso-8859-2"), ["te line 1\n\nte line 2"], ["te line 1", "", "te line 2"]);
+test(
+  rt,
+  new TextDecoder("iso-8859-2"),
+  ["te line 1\n\nte line 2"],
+  ["te line 1", "", "te line 2"]
+);
