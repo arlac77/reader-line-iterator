@@ -18,7 +18,7 @@
   "license": "BSD-2-Clause",
   "scripts": {
     "test": "npm run test:ava && npm run test:browser-ava",
-    "test:ava": "ava --timeout 2m tests/*-ava.mjs",
+    "test:ava": "ava --timeout 2m tests/*-ava.mjs && ava --timeout 2m tests/*.mjs",
     "test:browser-ava": "browser-ava --no-keep-open tests/*-browser.mjs",
     "cover": "c8 -x 'tests/**/*' --temp-directory build/tmp ava --timeout 2m tests/*.mjs && c8 report -r lcov -o build/coverage --temp-directory build/tmp",
     "docs": "documentation readme --section=API ./src/**/*.mjs",
@@ -27,10 +27,10 @@
   },
   "devDependencies": {
     "ava": "^5.0.1",
+    "browser-ava": "^1.0.0",
     "c8": "^7.12.0",
     "documentation": "^14.0.0",
-    "semantic-release": "^19.0.5",
-    "browser-ava": "^1.0.0"
+    "semantic-release": "^19.0.5"
   },
   "repository": {
     "type": "git",
