@@ -17,8 +17,9 @@
   ],
   "license": "BSD-2-Clause",
   "scripts": {
-    "test": "npm run test:ava",
-    "test:ava": "ava --timeout 2m tests/*.mjs",
+    "test": "npm run test:ava && npm run test:ava",
+    "test:ava": "ava --timeout 2m tests/*-test.mjs",
+    "test:browser-ava": "browser-ava tests/-browser.mjs",
     "cover": "c8 -x 'tests/**/*' --temp-directory build/tmp ava --timeout 2m tests/*.mjs && c8 report -r lcov -o build/coverage --temp-directory build/tmp",
     "docs": "documentation readme --section=API ./src/**/*.mjs",
     "lint": "npm run lint:docs",
@@ -43,5 +44,8 @@
       "arlac77/template-arlac77-github",
       "arlac77/template-esm-only"
     ]
+  },
+  "dependencies": {
+    "browser-ava": "^1.0.0"
   }
 }
