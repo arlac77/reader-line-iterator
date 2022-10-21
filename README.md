@@ -38,7 +38,7 @@ Extracts lines from a reader and delivers them as an async iterator.
 
 ### Parameters
 
-*   `reader` **Reader**&#x20;
+*   `reader` **ReadableStreamReader**&#x20;
 *   `decoder` **[TextDecoder](https://developer.mozilla.org/docs/Web/API/TextDecoder)**  (optional, default `new TextDecoder()`)
 
 Returns **AsyncIterator<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** extracted lines
