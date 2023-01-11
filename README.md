@@ -18,7 +18,7 @@ import { lineIterator } from "reader-line-iterator";
 
 const result = await fetch("http://somewhere/mytext.txt");
 
-for await (const line of lineIterator(result.body.grtReader())) {
+for await (const line of lineIterator(result.body.getReader())) {
     console.log(line);
 }
 ```
