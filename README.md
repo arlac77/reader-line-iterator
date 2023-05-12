@@ -1,6 +1,6 @@
 [![npm](https://img.shields.io/npm/v/reader-line-iterator.svg)](https://www.npmjs.com/package/reader-line-iterator)
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
-[![Open Bundle](https://bundlejs.com/badge-light.svg)](https://bundlejs.com/?q=reader-line-iterator)
+[![bundlejs](https://deno.bundlejs.com/?q=reader-line-iterator\&badge=detailed)](https://bundlejs.com/?q=reader-line-iterator)
 [![downloads](http://img.shields.io/npm/dm/reader-line-iterator.svg?style=flat-square)](https://npmjs.org/package/reader-line-iterator)
 [![GitHub Issues](https://img.shields.io/github/issues/arlac77/reader-line-iterator.svg?style=flat-square)](https://github.com/arlac77/reader-line-iterator/issues)
 [![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Farlac77%2Freader-line-iterator%2Fbadge\&style=flat)](https://actions-badge.atrox.dev/arlac77/reader-line-iterator/goto)
