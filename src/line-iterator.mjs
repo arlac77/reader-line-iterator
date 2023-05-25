@@ -1,6 +1,6 @@
 /**
  * Extracts lines from a reader and delivers them as an async iterator.
- * @param {ReadableStreamReader} reader
+ * @param {ReadableStreamDefaultReader|ReadableStreamBYOBReader} reader
  * @param {TextDecoder} decoder
  * @return {AsyncIterator<string>} extracted lines
  */
