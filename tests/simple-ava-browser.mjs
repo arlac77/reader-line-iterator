@@ -26,6 +26,8 @@ rt.title = (providedTitle = "", te, chunks, lines) =>
   `equal ${providedTitle} ${chunks} ${lines}`.trim();
 
 test(rt, undefined, [], []);
+test(rt, undefined, ["👨‍👩‍👧\n👨‍👩‍👧"], ["👨‍👩‍👧","👨‍👩‍👧"]);
+
 test(rt, undefined, ["line 1"], ["line 1"]);
 test(rt, undefined, ["li", "ne 1\r\nline", " ", "2"], ["line 1", "line 2"]);
 test(rt, undefined, ["line 1\n\nline 2"], ["line 1", "", "line 2"]);
