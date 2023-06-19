@@ -2,7 +2,7 @@ import test from "ava";
 import { ReadableStream } from "node:stream/web";
 import { lineIterator } from "reader-line-iterator";
 
-async function rt(t, te, chunks, lines) {
+async function rt(t, td, chunks, lines) {
   const encoder = new TextEncoder();
 
   const stream = new ReadableStream({
@@ -17,7 +17,7 @@ async function rt(t, te, chunks, lines) {
 
   const got = [];
 
-  for await (const line of lineIterator(stream.getReader(), te)) {
+  for await (const line of lineIterator(stream.getReader(), td)) {
     got.push(line);
   }
   t.deepEqual(got, lines);
