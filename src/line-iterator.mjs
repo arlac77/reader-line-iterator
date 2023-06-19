@@ -20,7 +20,7 @@ export async function* lineIterator(reader, decoder = new TextDecoder()) {
       if (r.done) {
         break;
       }
-      chunk = r.value ? chunk + decoder.decode(r.value) : chunk;
+      chunk += decoder.decode(r.value);
     }
   }
   if (startIndex < chunk.length) {
