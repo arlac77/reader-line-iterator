@@ -6,7 +6,6 @@
  */
 export async function* lineIterator(reader, decoder = new TextDecoder()) {
   let r = await reader.read();
-
   let chunk = r.value ? decoder.decode(r.value) : "";
 
   const re = /\r?\n/gm;
@@ -17,8 +16,7 @@ export async function* lineIterator(reader, decoder = new TextDecoder()) {
     if (result) {
       yield chunk.substring(startIndex, result.index);
       startIndex = re.lastIndex;
-    }
-    else {
+    } else {
       if (r.done) {
         break;
       }
