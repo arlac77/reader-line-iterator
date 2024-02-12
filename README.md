@@ -42,7 +42,7 @@ Extracts lines from a reader and delivers them as an async iterator.
 *   `reader` **(ReadableStreamDefaultReader | ReadableStreamBYOBReader)**&#x20;
 *   `decoder` **[TextDecoder](https://developer.mozilla.org/docs/Web/API/TextDecoder)**  (optional, default `new TextDecoder()`)
 
-Returns **AsyncIterator<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** extracted lines
+Returns **AsyncIterable<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** extracted lines
 
 # install
 
