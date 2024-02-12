@@ -2,7 +2,7 @@
  * Extracts lines from a reader and delivers them as an async iterator.
  * @param {ReadableStreamDefaultReader|ReadableStreamBYOBReader} reader
  * @param {TextDecoder} decoder
- * @return {AsyncIterator<string>} extracted lines
+ * @return {AsyncIterable<string>} extracted lines
  */
 export async function* lineIterator(reader, decoder = new TextDecoder()) {
   const re = /\r?\n/gm;
