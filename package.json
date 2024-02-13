@@ -5,13 +5,13 @@
     "access": "public",
     "provenance": true
   },
+  "types": "./types/line-iterator.d.mts",
   "exports": {
     ".": {
       "types": "./types/line-iterator.d.mts",
       "default": "./src/line-iterator.mjs"
     }
   },
-  "types": "./types/line-iterator.d.mts",
   "description": "Convert a reader into a async iterator emitting text lines",
   "contributors": [
     {
